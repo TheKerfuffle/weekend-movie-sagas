@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 
 function AddMovie() {
@@ -6,11 +8,32 @@ function AddMovie() {
     let [movieTitle, setMovieTitle] = useState('');
     let [imageUrl, setImageUrl] = useState('');
     let [movieDescription, setMovieDescription] = useState('');
-    let [movieGenres, setMovieGenres] = useState([]);
+    let [movieGenre, setMovieGenre] = useState(0);
 
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     function submitMovie() {
-        
+        event.preventDefault();
+        console.log('Adding new Movie:', movieTitle, imageUrl, movieDescription, movieGenre);
+        dispatch({type: 'ADD_NEW_MOVIE', payload: 
+            {
+            title: movieTitle ,
+            poster: imageUrl, 
+            description: movieDescription, 
+            genre_id: movieGenre
+            }
+        })
+        history.push('/');
+
+    }
+
+    function handleCancel() {
+        setMovieTitle('');
+        setImageUrl('');
+        setMovieDescription('');
+        setMovieGenre(0);
+        history.push('/');
     }
 
 
@@ -18,26 +41,32 @@ function AddMovie() {
         <>
             <form onSubmit={submitMovie}>
 
-            <input type="text" />
-            <input type="text" />
-            <textarea name="" id="" cols="40" rows="10"></textarea>
-            <select multiple={true} name="Genres" id="genres">
-                <option>--- Choose all that Apply with CMD ---</option>
-                <option value="1">Adventure</option>
-                <option value="2">Animated</option>
-                <option value="3">Biographical</option>
-                <option value="4">Comedy</option>
-                <option value="5">Disaster</option>
-                <option value="6">Drama</option>
-                <option value="7">Epic</option>
-                <option value="8">Fantasy</option>
-                <option value="9">Musical</option>
-                <option value="10">Romantic</option>
-                <option value="11">Science Fiction</option>
-                <option value="12">Space-Opera</option>
-                <option value="13">Superhero</option>
-            </select>
+                <input type="text" value={movieTitle} placeholder="Movie Title"
+                    onChange={(event) => setMovieTitle(event.target.value)} />
+
+                <input type="text" value={imageUrl} placeholder="Poster Image URL"
+                    onChange={(event) => setImageUrl(event.target.value)} />
+
+                <textarea name="" id="description" cols="40" rows="10" value={movieDescription} onChange={(event) => setMovieDescription(event.target.value)} />
+                <select name="Genres" id="genres" value={movieGenre} onChange={(event) => setMovieGenre(event.target.value)}>
+                    <option>--- Choose all that Apply with CMD ---</option>
+                    <option value="1">Adventure</option>
+                    <option value="2">Animated</option>
+                    <option value="3">Biographical</option>
+                    <option value="4">Comedy</option>
+                    <option value="5">Disaster</option>
+                    <option value="6">Drama</option>
+                    <option value="7">Epic</option>
+                    <option value="8">Fantasy</option>
+                    <option value="9">Musical</option>
+                    <option value="10">Romantic</option>
+                    <option value="11">Science Fiction</option>
+                    <option value="12">Space-Opera</option>
+                    <option value="13">Superhero</option>
+                </select>
+                <button type="submit">Add Movie</button>
             </form>
+            <button onClick={handleCancel}>Cancel</button>
         </>
     )
 }
