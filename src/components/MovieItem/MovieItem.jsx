@@ -8,31 +8,21 @@ function MovieItem({movie}) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const reduxState = useSelector(store => store);
-
-    let [movieDetails, setMovieDetails] = useState({});
-    let [genres, setGenres] = useState({});
+    // const reduxState = useSelector(store => store);
+    // let [movieDetails, setMovieDetails] = useState({});
+    // let [genres, setGenres] = useState({});
 
 
     useEffect( () => {
         makeDetailPackage();
     }, [] );
 
-    function makeDetailPackage() {
-
-        for (let i = 0; i<reduxState.genres; i++ ) {
-            if (movie.id == reduxState.genres[i].movie_id) {
-                setGenres(...genres, reduxState.genres[i]);
-            }
-        }
-        setMovieDetails({movie, genres});
-    }
+    
 
     function handleClick(event) {
         
-        dispatch({type: 'SET_DETAILS', payload: movieDetails})
+        dispatch({type: 'SET_DETAILS', payload: {movie}});
         history.push(`/details`);
-
     }
 
 
