@@ -7,9 +7,9 @@ function Details() {
     const details = useSelector(store => store.currentDetails);
     
 
-    useEffect(() => {
-        console.log(details);
-    }, [])
+    // useEffect(() => {
+    //     console.log(details);
+    // }, [])
 
     return (
         <>

@@ -16,7 +16,8 @@ function MovieItem({movie}) {
 
     function handleClick(event) {
         
-        dispatch({type: 'SET_DETAILS', payload: {movie}});
+        dispatch({type: 'FETCH_GENRES', payload: {movie}});
+        dispatch({type: 'ADD_MOVIE_DETAILS', payload: { property: 'movie', value: movie }});
         history.push(`/details`);
     }
 
