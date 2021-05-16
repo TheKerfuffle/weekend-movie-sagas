@@ -31,14 +31,24 @@ function* fetchAllMovies() {
 
 function* fetchGenres() {
     // get all genres from the DB
+    // console.log(action.payload);
+
+    // try {
+    //     const genres = yield axios.get(`/api/genre/${action.payload}`);
+    //     console.log('get all:', genres.data);
+
+    //     yield put({type: 'ADD_MOVIE_DETAILS', payload: { property: 'genres', value: genres.data }});
+    // } catch {
+    //     console.log('get genres error');
+    // }
+
     try {
-        console.log(action.payload);
-        
-        const genres = yield axios.get(`/api/genre/${action.payload.movie.id}`);
+        const genres = yield axios.get(`/api/genre/`);
         console.log('get all:', genres.data);
-        yield put({ type: 'SET_GENRES', payload: genres.data });
+
+        yield put({type: 'ADD_MOVIE_DETAILS', payload: { property: 'genres', value: genres.data }});
     } catch {
-        console.log('get all genres error');
+        console.log('get genres error');
     }
 }
 

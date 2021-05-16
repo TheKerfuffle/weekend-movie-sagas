@@ -7,12 +7,17 @@ const pool = require('../modules/pool')
 //   res.sendStatus(500)
 // });
 
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
 
+  console.log('**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************',req.params);
+  
+  // `SELECT mg.movie_id, mg.genre_id, g.name FROM movies_genres as mg
+  // JOIN genres as g ON g.id = mg.genre_id
+  // WHERE mg.movie_id=$1;`;
   const query = `SELECT mg.movie_id, mg.genre_id, g.name FROM movies_genres as mg
-	                  JOIN genres as g ON g.id = mg.genre_id
-	                  WHERE mg.movie_id=$1;`;
-  pool.query(query, [req.params.id])
+	                  JOIN genres as g ON g.id = mg.genre_id`;
+
+  pool.query(query)
     .then(result => {
       console.log('*******************', result.rows, '*******************');
       res.send(result.rows);

@@ -5,24 +5,38 @@ import { useSelector } from "react-redux";
 function Details() {
 
     const details = useSelector(store => store.currentDetails);
-    
 
-    // useEffect(() => {
-    //     console.log(details);
-    // }, [])
+
+    useEffect(() => {
+        console.log(details);
+    }, [])
 
     return (
         <>
+
             <h3>{details.movie.title}</h3>
             <img src={details.movie.poster} alt={details.movie.title} />
             <p>{details.movie.description}</p>
 
-            {/* <ul>
-                {details.genre.map(item => 
-                    <li>
-                        {item.name}
-                    </li>)}
-            </ul> */}
+            {/* {JSON.stringify(details.genres[0])} */}
+
+            {details.genres != undefined ? (
+
+                <ul>
+                    {details.genres.map(item => {
+                        if (item.movie_id == details.movie.id) {
+                            return <li key={item.genre_id}> {item.name} </li>;
+                        }
+                         
+                    }
+                    )
+                    }
+                </ul>
+            ) : (
+                ''
+            )
+            }
+
         </>
     )
 }
