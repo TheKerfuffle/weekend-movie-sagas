@@ -4,7 +4,7 @@
 
 [ x ] - Home / List Page
 
-    [  ] - When a movie poster is clicked, a user should be brought to the `/details` view for that movie.
+    [ x ] - When a movie poster is clicked, a user should be brought to the `/details` view for that movie.
 
     [ x ] - Have a way to get to the Add Movie Page
 
@@ -15,10 +15,10 @@
 
     [ x ] - You will need to store this data in redux!
 
-    [  ] - The details page should have a `Back to List` button, 
+    [ x ] - The details page should have a `Back to List` button, 
         which should bring the user to the Home/List Page
 
-[  ] - Add Movie Page
+[ x ] - Add Movie Page
     FIELDS
     [ x ] - an input field (for the movie title)
     [ x ] - an input field (for the movie poster image URL))

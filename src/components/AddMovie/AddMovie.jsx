@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 
@@ -9,6 +9,8 @@ function AddMovie() {
     let [imageUrl, setImageUrl] = useState('');
     let [movieDescription, setMovieDescription] = useState('');
     let [movieGenre, setMovieGenre] = useState(0);
+
+    const genres = useSelector(store => store.genres)
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -50,7 +52,10 @@ function AddMovie() {
                 <textarea name="" id="description" cols="40" rows="10" value={movieDescription} onChange={(event) => setMovieDescription(event.target.value)} />
                 <select name="Genres" id="genres" value={movieGenre} onChange={(event) => setMovieGenre(event.target.value)}>
                     <option>--- Choose all that Apply with CMD ---</option>
-                    <option value="1">Adventure</option>
+                    {genres.map(item => {
+                        return <option key={item.id} value={item.id}>{item.name}</option>
+                    })}
+                    {/* <option value="1">Adventure</option>
                     <option value="2">Animated</option>
                     <option value="3">Biographical</option>
                     <option value="4">Comedy</option>
@@ -62,7 +67,7 @@ function AddMovie() {
                     <option value="10">Romantic</option>
                     <option value="11">Science Fiction</option>
                     <option value="12">Space-Opera</option>
-                    <option value="13">Superhero</option>
+                    <option value="13">Superhero</option> */}
                 </select>
                 <button type="submit">Add Movie</button>
             </form>
