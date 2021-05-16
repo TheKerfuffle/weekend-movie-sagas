@@ -27,12 +27,12 @@ function* fetchAllMovies() {
     } catch {
         console.log('get all movies error');
     }
-
 }
 
 function* fetchAllGenres() {
+    // get all genres from the DB
     try {
-        const genres = yield axios.get('/api/genre/:id');
+        const genres = yield axios.get('/api/genre/');
         console.log('get all:', genres.data);
         yield put({ type: 'SET_GENRES', payload: genres.data });
     } catch {

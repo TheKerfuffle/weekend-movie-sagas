@@ -12,11 +12,6 @@ function MovieItem({movie}) {
     // let [movieDetails, setMovieDetails] = useState({});
     // let [genres, setGenres] = useState({});
 
-
-    useEffect( () => {
-        makeDetailPackage();
-    }, [] );
-
     
 
     function handleClick(event) {
