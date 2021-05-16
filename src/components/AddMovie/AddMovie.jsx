@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 
 function AddMovie() {
@@ -6,11 +8,24 @@ function AddMovie() {
     let [movieTitle, setMovieTitle] = useState('');
     let [imageUrl, setImageUrl] = useState('');
     let [movieDescription, setMovieDescription] = useState('');
-    let [movieGenre, setMovieGenre] = useState([]);
+    let [movieGenre, setMovieGenre] = useState(0);
 
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     function submitMovie() {
-        console.log(movieTitle, imageUrl, movieDescription, movieGenre);
+        event.preventDefault();
+        console.log('Adding new Movie:', movieTitle, imageUrl, movieDescription, movieGenre);
+        dispatch({type: 'ADD_NEW_MOVIE', payload: 
+            {
+            title: movieTitle ,
+            poster: imageUrl, 
+            description: movieDescription, 
+            genre_id: movieGenre
+            }
+        })
+        history.push('/');
+
     }
 
 
@@ -41,6 +56,7 @@ function AddMovie() {
                     <option value="12">Space-Opera</option>
                     <option value="13">Superhero</option>
                 </select>
+                <button type="submit">Add Movie</button>
             </form>
         </>
     )
