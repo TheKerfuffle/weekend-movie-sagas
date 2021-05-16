@@ -30,13 +30,8 @@ function Details() {
 
                 <ul>
                     {details.genres.map(item => {
-                        if (item.movie_id == details.movie.id) {
-                            return <li key={item.genre_id}> {item.name} </li>;
-                        }
-                         
-                    }
-                    )
-                    }
+                        <li key={item.genre_id}> {item.name} </li>
+                    })}
                 </ul>
             ) : (
                 ''
