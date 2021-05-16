@@ -28,6 +28,14 @@ function AddMovie() {
 
     }
 
+    function handleCancel() {
+        setMovieTitle('');
+        setImageUrl('');
+        setMovieDescription('');
+        setMovieGenre(0);
+        history.push('/');
+    }
+
 
     return (
         <>
@@ -58,6 +66,7 @@ function AddMovie() {
                 </select>
                 <button type="submit">Add Movie</button>
             </form>
+            <button onClick={handleCancel}>Cancel</button>
         </>
     )
 }
