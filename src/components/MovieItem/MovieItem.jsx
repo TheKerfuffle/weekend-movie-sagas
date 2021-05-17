@@ -15,8 +15,8 @@ function MovieItem({movie}) {
     
 
     function handleClick(event) {
-        
-        // dispatch({type: 'FETCH_GENRES', payload: movie.id});
+
+        // Handles a click within the specified movie's div element
         dispatch({type: 'FETCH_GENRES', payload: {id: movie.id}});
         dispatch({type: 'ADD_MOVIE_DETAILS', payload: { property: 'movie', value: movie }});
         history.push(`/details`);

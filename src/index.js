@@ -32,22 +32,11 @@ function* fetchAllMovies() {
 }
 
 function* fetchGenres( action ) {
-    // get all genres from the DB
-    // console.log('fetchGenres, action.payload:', action.payload);
-
-    // try {
-    //     const genres = yield axios.get(`/api/genre/${action.payload}`);
-    //     console.log('get all:', genres.data);
-
-    //     yield put({type: 'ADD_MOVIE_DETAILS', payload: { property: 'genres', value: genres.data }});
-    // } catch {
-    //     console.log('get genres error');
-    // }
+    // Get a specific movie's associated genre info
 
     try {
         const genres = yield axios.post(`/api/genre/`, action.payload);
         // console.log(`get movie's genres: movie id, data`,action.payload , genres.data);
-
         yield put({type: 'ADD_MOVIE_DETAILS', payload: { property: 'genres', value: genres.data }});
     } catch {
         console.log('get genres error');
@@ -55,9 +44,10 @@ function* fetchGenres( action ) {
 }
 
 function* fetchAllGenres() {
+    // Gets us all of the genres
     try {
         const allGenres = yield axios.get(`/api/genre/`);
-        console.log('get all genres:', allGenres.data);
+        // console.log('get all genres:', allGenres.data);
         yield put({type: 'SET_GENRES', payload: allGenres.data});
     } catch {
         console.log('get genres error');
@@ -65,6 +55,7 @@ function* fetchAllGenres() {
 }
 
 function* addNewMovie( action ) {
+    // Adds a new movie and genre to the database
     try{
         const newMovie = yield axios.post(`/api/movie`, action.payload);
         // console.log('get all:', newMovie.data);

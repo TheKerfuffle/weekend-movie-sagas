@@ -5,19 +5,20 @@ import { useHistory } from "react-router";
 
 function AddMovie() {
 
+    // Initialize variables for the inputs
     let [movieTitle, setMovieTitle] = useState('');
     let [imageUrl, setImageUrl] = useState('');
     let [movieDescription, setMovieDescription] = useState('');
     let [movieGenre, setMovieGenre] = useState(0);
 
     const genres = useSelector(store => store.genres)
-
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // Handles the submit form
     function submitMovie() {
         event.preventDefault();
-        console.log('Adding new Movie:', movieTitle, imageUrl, movieDescription, movieGenre);
+        // console.log('Adding new Movie:', movieTitle, imageUrl, movieDescription, movieGenre);
         dispatch({type: 'ADD_NEW_MOVIE', payload: 
             {
             title: movieTitle ,
@@ -31,6 +32,7 @@ function AddMovie() {
     }
 
     function handleCancel() {
+        // Clears inputs and redirects us to the home page
         setMovieTitle('');
         setImageUrl('');
         setMovieDescription('');
@@ -41,6 +43,7 @@ function AddMovie() {
 
     return (
         <>
+        {/* Form that grabs title, description, image url and genre information for the dispatch */}
             <form onSubmit={submitMovie}>
 
                 <input type="text" value={movieTitle} placeholder="Movie Title"
@@ -55,19 +58,6 @@ function AddMovie() {
                     {genres.map(item => {
                         return <option key={item.id} value={item.id}>{item.name}</option>
                     })}
-                    {/* <option value="1">Adventure</option>
-                    <option value="2">Animated</option>
-                    <option value="3">Biographical</option>
-                    <option value="4">Comedy</option>
-                    <option value="5">Disaster</option>
-                    <option value="6">Drama</option>
-                    <option value="7">Epic</option>
-                    <option value="8">Fantasy</option>
-                    <option value="9">Musical</option>
-                    <option value="10">Romantic</option>
-                    <option value="11">Science Fiction</option>
-                    <option value="12">Space-Opera</option>
-                    <option value="13">Superhero</option> */}
                 </select>
                 <button type="submit">Add Movie</button>
             </form>

@@ -8,6 +8,7 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
 
+    // on list page load, get all movie and genre data
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
         dispatch({ type: 'FETCH_ALL_GENRES' });

@@ -12,7 +12,6 @@ function App() {
 
         <div className="nav">
           <ul>
-            <li><Link className="link" to="/">Home</Link></li>
             <li><Link className="link" to="/add-movie">Add Movie</Link></li>
           </ul>
         </div>
